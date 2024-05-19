@@ -1,7 +1,6 @@
 Bienvenid@ al Sprint 4 de It Academy. Estoy cursando para aprender Angular. 
 En este Sprint creamos un proyecto web que muestra chistes utilizando una API pública. 
-En este READ.me, a continuación, viene el enunciado tal como lo recibimos de la academia y luego agregaré las deficniciones y detalles de las funciones utilizadas.
-
+En este READ.me a continuación viene el enunciado tal como lo recibimos de la academia y luego agregaré las deficniciones y detalles de las funciones utilizadas.
 
 En las anteriores entregas, los datos que hemos utilizado en nuestras webs los hemos agregado nosotros al programa (hardcoded), pero no es habitual.
 
@@ -25,17 +24,18 @@ En el ámbito profesional, cuando trabajes en un proyecto, la empresa normalment
 
 El ejercicio se compone de 6 (seis) ejercicios agrupados en tres niveles que detallaré a medida que vaya resolviendo las funciones necesarias.
 
-Crearemos la pantalla principal que mostrará chistes al usuario/a.
+--------------------------------------------------------------------
+Nivel 1 Ejercicio 1
 
+En este primer ejercicio crearemos la pantalla principal que mostrará chistes al usuario/a.
 El funcionamiento debe ser el siguiente:
+
 - Al iniciar se mostrará el primer chiste por pantalla y el botón de siguiente chiste.
 - Al pulsar el botón de “Siguiente chiste” se hará fetch en la API de chistes y se mostrará por consola y por pantalla el chiste.
 
-Nivel 1 Ejercicio 1
-
 · HTML: El archivo index.html solo contendrá un botón para el siguiente chiste, más adelante la información sobre clima y algunos estilos, además de los links necesarios para bootstrap y scripts.
 
-· app.ts
+· app.ts: creamos las funciones para llamar a la API y mostrar el chiste en la pantalla y consola.
 
 · Línea 1 a 4: Definen la estructura de un chiste según la API. Typescript ayuda a validar los datos para prevenir errores en el desarrollo. Por tanto, definir la interface para validar la estructura de los datos que se reciben de la API ayudaría a verificar que los datos recibidos también tienen el tipo correcto. 
 
@@ -54,6 +54,30 @@ Nivel 1 Ejercicio 1
 
 · Línea 32 y 34: Añadimos un evento al botón para obtener el siguiente chiste y llamamos a la función displayJoke(). Así pues, al iniciar la aplicación, obtenemos un chiste.
 
+
+Nivel 1 Ejercicio 2
+
+Hemos de realizar una primera maquetación, colocando cada elemento en su sitio. En este ejercicio no maquetaremos al detalle sino que centraremos los elementos y declaramos algunas clases de estilos.
+
+· HTML: Modificcamos el archivo index.html para agregar una imagen de fondo y aplicar algunos estilos. Redefinimos los divs necesarios.
+
+· Línea 16 a 22: Agregamos un div para la imagen de fondo y asignamos una imagen.
+    Creamos un contenedor para los chistes mediante div y aplicamos clases y alineaciones verticales y horizontales.
+    Creamos un div con propiedades de tarjeta para mostrar el texto de los chistes y el botón para el siguiente chiste. 
+    El párrafo con id="jokeText con clase de alerta será visible si la promesa demora en resolverse y el chiste tarda en cargarse. Mostrará el mensaje "Cargando Chiste" si fuera necesario.
+    Por ahora el botón solo tiene una clase primaria de bootstrap (btn-btn-primary)
+
+· Style.css
+
+· Línea 1 a 4: Eliminamos cualquier margen predeterminado y establecemos la altura al 100% del viewport.
+
+· Línea 6 a 16: Aquí damos estilos al div que contiene la imagen de fondo. Posición absoluta pra cubrir todo el fondo, la ajustamos para ocupar todo el div y la centramos. Y con el zindex de -1 nos aseguramos de que la imagen se muestre detrás de los chistes.
+
+· Líneas 18 a 20: Damos un estilo básico al container del texto de los chistes. La ajustamos al 100% de altura. 
+
+· Línea 22 a 25: Con estas líneas damos estilo básico a la tarjeta que contendrá los textos y el botón. Fondo semi transparente y esquinas suavemente redondeadas.
+
+· Línea 27 a 29: Esta clase aumenta levemente el tamaño de la alerta "Cargando Chiste" y afwectará también al tamaño del texto de los chistes, que llevan la misma clase .alert-info . 
 
 
 
