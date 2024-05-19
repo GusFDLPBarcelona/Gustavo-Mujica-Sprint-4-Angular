@@ -21,8 +21,8 @@ async function fetchJoke(): Promise<Joke> {
 async function displayJoke(): Promise<void> {
     try {
         const joke = await fetchJoke();
-        jokeText.innerText = joke.joke;
         console.log(joke);
+        jokeText.innerText = joke.joke;
     } catch (error: any) {
         jokeText.innerText = 'Error al cargar el chiste';
         console.error('Error fetching joke:', error);

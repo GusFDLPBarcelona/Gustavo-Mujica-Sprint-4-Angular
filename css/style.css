@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./imagenes/pexels-photo-3812743.jpeg'); /* Reemplaza con la ruta a tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Para asegurarnos de que el fondo esté detrás del contenido */
+}
+
+#jokeContainer {
+    height: 100%;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente para la tarjeta */
+    border-radius: 15px;
+}
+
+.alert-info {
+    font-size: 1.25rem;
+}
