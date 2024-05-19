@@ -27,3 +27,12 @@ html, body {
 .alert-info {
     font-size: 1.25rem;
 }
+
+#voteButtons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.vote-btn {
+    width: 60px;
+}
