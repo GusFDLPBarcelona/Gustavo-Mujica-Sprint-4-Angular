@@ -37,6 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var jokeText = document.getElementById('jokeText');
 var nextJokeButton = document.getElementById('nextJokeButton');
+var votingContainer = document.getElementById('voting-container');
+var reportAcudits = [];
+var currentJoke = null;
 function fetchJoke() {
     return __awaiter(this, void 0, void 0, function () {
         var response, joke;
@@ -70,8 +73,9 @@ function displayJoke() {
                     return [4 /*yield*/, fetchJoke()];
                 case 1:
                     joke = _a.sent();
+                    currentJoke = joke;
                     jokeText.innerText = joke.joke;
-                    console.log(joke);
+                    console.log('New joke displayed:', joke.joke);
                     return [3 /*break*/, 3];
                 case 2:
                     error_1 = _a.sent();
@@ -83,5 +87,33 @@ function displayJoke() {
         });
     });
 }
+function voteJoke(score) {
+    if (currentJoke) {
+        var existingReportIndex = reportAcudits.findIndex(function (r) { return r.joke === currentJoke.joke; });
+        var report = {
+            joke: currentJoke.joke,
+            score: score,
+            date: new Date().toISOString()
+        };
+        if (existingReportIndex !== -1) {
+            reportAcudits[existingReportIndex] = report; // Actualiza la entrada existente
+        }
+        else {
+            reportAcudits.push(report); // Añade una nueva entrada
+        }
+        console.log('Updated reports:', reportAcudits);
+    }
+    else {
+        console.error('currentJoke is null');
+    }
+}
+votingContainer.addEventListener('click', function (event) {
+    if (event.target && event.target.matches('.vote-btn')) {
+        var target = event.target;
+        var score = Number(target.getAttribute('data-score'));
+        console.log('Vote button clicked with score:', score);
+        voteJoke(score);
+    }
+});
 nextJokeButton.addEventListener('click', displayJoke);
 displayJoke();
