@@ -35,19 +35,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-
+// Elementos HTML
 var jokeText = document.getElementById('jokeText');
 var nextJokeButton = document.getElementById('nextJokeButton');
 var votingContainer = document.getElementById('voting-container');
 var weatherText = document.getElementById('weatherText');
 var weatherIcon = document.getElementById('weatherIcon');
-
+var shapes = ['Blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg'];
+// Variables
 var reportAcudits = [];
 var currentJoke = null;
-var useChuckNorrisAPI = false; 
+var useChuckNorrisAPI = false;
 var API_KEY = '6f5f881d8de1fa9d8310060dd6cc07c8';
 var CITY = 'Barcelona';
-
+// Función para los datos del tiempo en Barcelona desde OpenWeatherMap API
 function fetchWeather() {
     return __awaiter(this, void 0, void 0, function () {
         var response, weatherData, temperature, description, iconCode, error_1;
@@ -81,7 +82,7 @@ function fetchWeather() {
         });
     });
 }
-
+// Función para obtener un chiste desde icanhazdadjoke API
 function fetchIcanhazdadjoke() {
     return __awaiter(this, void 0, void 0, function () {
         var response, jokeJson, error_2;
@@ -114,7 +115,7 @@ function fetchIcanhazdadjoke() {
         });
     });
 }
-
+// Variables y opciones para la API de Chuck Norris
 var chuckNorrisUrl = 'https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random';
 var chuckNorrisOptions = {
     method: 'GET',
@@ -124,7 +125,7 @@ var chuckNorrisOptions = {
         'X-RapidAPI-Host': 'matchilling-chuck-norris-jokes-v1.p.rapidapi.com'
     }
 };
-
+// Función para obtener un chiste de Chuck Norris desde la API
 function fetchChuckNorrisJoke() {
     return __awaiter(this, void 0, void 0, function () {
         var response, jokeJson, error_3;
@@ -154,7 +155,7 @@ function fetchChuckNorrisJoke() {
         });
     });
 }
-
+// Función para obtener un chiste desde una de las dos APIs alternativamente
 function fetchJoke() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -169,7 +170,7 @@ function fetchJoke() {
         });
     });
 }
-
+// Función para mostrar los chistes en la página
 function displayJoke() {
     return __awaiter(this, void 0, void 0, function () {
         var joke, error_4;
@@ -182,7 +183,7 @@ function displayJoke() {
                     joke = _a.sent();
                     currentJoke = joke;
                     jokeText.innerText = joke.joke;
-                    useChuckNorrisAPI = !useChuckNorrisAPI; 
+                    useChuckNorrisAPI = !useChuckNorrisAPI;
                     console.log('New joke displayed:', joke.joke);
                     return [3 /*break*/, 3];
                 case 2:
@@ -195,7 +196,7 @@ function displayJoke() {
         });
     });
 }
-
+// Función para votar un chiste
 function voteJoke(score) {
     if (currentJoke) {
         var existingReportIndex = reportAcudits.findIndex(function (r) { return r.joke === currentJoke.joke; });
@@ -216,7 +217,7 @@ function voteJoke(score) {
         console.error('currentJoke is null');
     }
 }
-
+// Eventos de escucha de los botones agrupados en el contenedor de votación
 votingContainer.addEventListener('click', function (event) {
     if (event.target && event.target.matches('.vote-btn')) {
         var target = event.target;
@@ -226,6 +227,6 @@ votingContainer.addEventListener('click', function (event) {
     }
 });
 nextJokeButton.addEventListener('click', displayJoke);
-
+// LLamadas a las funciones para mostrar el chiste y el tiempo
 displayJoke();
 fetchWeather();

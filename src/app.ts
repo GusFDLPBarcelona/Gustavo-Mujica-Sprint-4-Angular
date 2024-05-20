@@ -16,6 +16,7 @@ const nextJokeButton = document.getElementById('nextJokeButton') as HTMLButtonEl
 const votingContainer = document.getElementById('voting-container') as HTMLDivElement;
 const weatherText = document.getElementById('weatherText') as HTMLParagraphElement;
 const weatherIcon = document.getElementById('weatherIcon') as HTMLImageElement;
+const shapes = ['Blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg']
 
 // Variables
 const reportAcudits: JokeReport[] = [];
