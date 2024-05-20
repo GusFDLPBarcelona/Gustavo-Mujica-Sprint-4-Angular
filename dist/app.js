@@ -38,8 +38,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var jokeText = document.getElementById('jokeText');
 var nextJokeButton = document.getElementById('nextJokeButton');
 var votingContainer = document.getElementById('voting-container');
+var weatherText = document.getElementById('weatherText');
+var weatherIcon = document.getElementById('weatherIcon');
 var reportAcudits = [];
 var currentJoke = null;
+var API_KEY = '6f5f881d8de1fa9d8310060dd6cc07c8';
+var CITY = 'Barcelona';
+function fetchWeather() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, weatherData, temperature, description, iconCode, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch("https://api.openweathermap.org/data/2.5/weather?q=".concat(CITY, "&appid=").concat(API_KEY, "&units=metric"))];
+                case 1:
+                    response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    weatherData = _a.sent();
+                    temperature = weatherData.main.temp;
+                    description = weatherData.weather[0].description;
+                    iconCode = weatherData.weather[0].icon;
+                    weatherText.innerText = "La temperatura en ".concat(CITY, " es de ").concat(temperature, "\u00B0C con ").concat(description, ".");
+                    weatherIcon.src = "https://openweathermap.org/img/wn/".concat(iconCode, "@2x.png"); // Establecer la fuente del ícono
+                    weatherIcon.style.display = 'block'; // Asegurarse de que el ícono sea visible
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    weatherText.innerText = 'Error al cargar la información meteorológica';
+                    console.error('Error fetching weather:', error_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function fetchJoke() {
     return __awaiter(this, void 0, void 0, function () {
         var response, joke;
@@ -65,7 +102,7 @@ function fetchJoke() {
 }
 function displayJoke() {
     return __awaiter(this, void 0, void 0, function () {
-        var joke, error_1;
+        var joke, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -78,9 +115,9 @@ function displayJoke() {
                     console.log('New joke displayed:', joke.joke);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_1 = _a.sent();
+                    error_2 = _a.sent();
                     jokeText.innerText = 'Error al cargar el chiste';
-                    console.error('Error fetching joke:', error_1);
+                    console.error('Error fetching joke:', error_2);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
@@ -96,10 +133,10 @@ function voteJoke(score) {
             date: new Date().toISOString()
         };
         if (existingReportIndex !== -1) {
-            reportAcudits[existingReportIndex] = report; // Actualiza la entrada existente
+            reportAcudits[existingReportIndex] = report;
         }
         else {
-            reportAcudits.push(report); // Añade una nueva entrada
+            reportAcudits.push(report);
         }
         console.log('Updated reports:', reportAcudits);
     }
@@ -117,3 +154,4 @@ votingContainer.addEventListener('click', function (event) {
 });
 nextJokeButton.addEventListener('click', displayJoke);
 displayJoke();
+fetchWeather();

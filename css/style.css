@@ -16,13 +16,34 @@ html, body {
 }
 
 #jokeContainer {
-    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
 }
 
-.card {
-    background-color: rgba(255, 255, 255, 0.9); 
-    border-radius: 15px;
+#jokeContainer .card {
+    max-width: 400px; 
+    width: auto;
+    padding: 20px;
+    text-align: center;
 }
+
+#jokeContainer p.alert {
+    margin: 10px 0;
+}
+
+#voteButtons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#nextJokeButton {
+    display: block;
+    margin: 10px auto;
+}
+
 
 .alert-info {
     font-size: 1.25rem;
@@ -35,4 +56,34 @@ html, body {
 
 .vote-btn {
     width: 60px;
+}
+
+#weatherContainer {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 1000;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 150px; 
+    text-align: center;
+}
+
+#weatherContainer h3 {
+    margin: 0;
+    font-size: 1rem; 
+}
+
+#weatherText {
+    font-size: 0.9rem; 
+    margin: 5px 0;
+}
+
+#weatherIcon {
+    display: block;
+    margin: 0 auto;
+    width: 50px; 
+    height: auto;
 }
