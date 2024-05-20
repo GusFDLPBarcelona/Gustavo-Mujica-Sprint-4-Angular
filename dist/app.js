@@ -35,15 +35,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+
 var jokeText = document.getElementById('jokeText');
 var nextJokeButton = document.getElementById('nextJokeButton');
 var votingContainer = document.getElementById('voting-container');
 var weatherText = document.getElementById('weatherText');
 var weatherIcon = document.getElementById('weatherIcon');
+
 var reportAcudits = [];
 var currentJoke = null;
+var useChuckNorrisAPI = false; // Variable to alternate between APIs
 var API_KEY = '6f5f881d8de1fa9d8310060dd6cc07c8';
 var CITY = 'Barcelona';
+
 function fetchWeather() {
     return __awaiter(this, void 0, void 0, function () {
         var response, weatherData, temperature, description, iconCode, error_1;
@@ -64,8 +68,8 @@ function fetchWeather() {
                     description = weatherData.weather[0].description;
                     iconCode = weatherData.weather[0].icon;
                     weatherText.innerText = "La temperatura en ".concat(CITY, " es de ").concat(temperature, "\u00B0C con ").concat(description, ".");
-                    weatherIcon.src = "https://openweathermap.org/img/wn/".concat(iconCode, "@2x.png"); // Establecer la fuente del ícono
-                    weatherIcon.style.display = 'block'; // Asegurarse de que el ícono sea visible
+                    weatherIcon.src = "https://openweathermap.org/img/wn/".concat(iconCode, "@2x.png");
+                    weatherIcon.style.display = 'block';
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
@@ -77,16 +81,19 @@ function fetchWeather() {
         });
     });
 }
-function fetchJoke() {
+
+function fetchIcanhazdadjoke() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, joke;
+        var response, jokeJson, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch('https://icanhazdadjoke.com/', {
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    })];
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('https://icanhazdadjoke.com/', {
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        })];
                 case 1:
                     response = _a.sent();
                     if (!response.ok) {
@@ -94,15 +101,78 @@ function fetchJoke() {
                     }
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    joke = _a.sent();
-                    return [2 /*return*/, joke];
+                    jokeJson = _a.sent();
+                    return [2 /*return*/, {
+                            id: jokeJson.id,
+                            joke: jokeJson.joke
+                        }];
+                case 3:
+                    error_2 = _a.sent();
+                    throw new Error('Error fetching joke from icanhazdadjoke');
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
+
+var chuckNorrisUrl = 'https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random';
+var chuckNorrisOptions = {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+        'X-RapidAPI-Key': '060082372amsh5513d8879d9aa02p1fb8d5jsn2e3c1250bafd',
+        'X-RapidAPI-Host': 'matchilling-chuck-norris-jokes-v1.p.rapidapi.com'
+    }
+};
+
+function fetchChuckNorrisJoke() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, jokeJson, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch(chuckNorrisUrl, chuckNorrisOptions)];
+                case 1:
+                    response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    jokeJson = _a.sent();
+                    return [2 /*return*/, {
+                            id: jokeJson.id,
+                            joke: jokeJson.value
+                        }];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error(error_3);
+                    throw new Error('Error fetching Chuck Norris joke');
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+
+function fetchJoke() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!useChuckNorrisAPI) return [3 /*break*/, 2];
+                    return [4 /*yield*/, fetchChuckNorrisJoke()];
+                case 1: return [2 /*return*/, _a.sent()];
+                case 2: return [4 /*yield*/, fetchIcanhazdadjoke()];
+                case 3: return [2 /*return*/, _a.sent()];
+            }
+        });
+    });
+}
+
 function displayJoke() {
     return __awaiter(this, void 0, void 0, function () {
-        var joke, error_2;
+        var joke, error_4;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -112,18 +182,20 @@ function displayJoke() {
                     joke = _a.sent();
                     currentJoke = joke;
                     jokeText.innerText = joke.joke;
+                    useChuckNorrisAPI = !useChuckNorrisAPI; // Alternate between APIs
                     console.log('New joke displayed:', joke.joke);
                     return [3 /*break*/, 3];
                 case 2:
-                    error_2 = _a.sent();
+                    error_4 = _a.sent();
                     jokeText.innerText = 'Error al cargar el chiste';
-                    console.error('Error fetching joke:', error_2);
+                    console.error('Error fetching joke:', error_4);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
+
 function voteJoke(score) {
     if (currentJoke) {
         var existingReportIndex = reportAcudits.findIndex(function (r) { return r.joke === currentJoke.joke; });
@@ -144,6 +216,7 @@ function voteJoke(score) {
         console.error('currentJoke is null');
     }
 }
+
 votingContainer.addEventListener('click', function (event) {
     if (event.target && event.target.matches('.vote-btn')) {
         var target = event.target;
@@ -153,5 +226,6 @@ votingContainer.addEventListener('click', function (event) {
     }
 });
 nextJokeButton.addEventListener('click', displayJoke);
+
 displayJoke();
 fetchWeather();
