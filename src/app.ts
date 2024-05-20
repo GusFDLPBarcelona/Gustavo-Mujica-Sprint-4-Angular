@@ -20,7 +20,7 @@ const weatherIcon = document.getElementById('weatherIcon') as HTMLImageElement;
 // Variables
 const reportAcudits: JokeReport[] = [];
 let currentJoke: Joke | null = null;
-let useChuckNorrisAPI = false; // Variable to alternate between APIs
+let useChuckNorrisAPI = false; 
 
 const API_KEY = '6f5f881d8de1fa9d8310060dd6cc07c8';
 const CITY = 'Barcelona';

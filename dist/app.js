@@ -44,7 +44,7 @@ var weatherIcon = document.getElementById('weatherIcon');
 
 var reportAcudits = [];
 var currentJoke = null;
-var useChuckNorrisAPI = false; // Variable to alternate between APIs
+var useChuckNorrisAPI = false; 
 var API_KEY = '6f5f881d8de1fa9d8310060dd6cc07c8';
 var CITY = 'Barcelona';
 
@@ -182,7 +182,7 @@ function displayJoke() {
                     joke = _a.sent();
                     currentJoke = joke;
                     jokeText.innerText = joke.joke;
-                    useChuckNorrisAPI = !useChuckNorrisAPI; // Alternate between APIs
+                    useChuckNorrisAPI = !useChuckNorrisAPI; 
                     console.log('New joke displayed:', joke.joke);
                     return [3 /*break*/, 3];
                 case 2:
