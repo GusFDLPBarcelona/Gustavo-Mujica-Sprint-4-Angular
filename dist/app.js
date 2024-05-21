@@ -51,7 +51,7 @@ var CITY = 'Barcelona';
 // Función para los datos del tiempo en Barcelona desde OpenWeatherMap API
 function fetchWeather() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, weatherData, temperature, description, iconCode, error_1;
+        var response, weatherData, temperature, iconCode, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -66,9 +66,8 @@ function fetchWeather() {
                 case 2:
                     weatherData = _a.sent();
                     temperature = weatherData.main.temp;
-                    description = weatherData.weather[0].description;
                     iconCode = weatherData.weather[0].icon;
-                    weatherText.innerText = "La temperatura en ".concat(CITY, " es de ").concat(temperature, "\u00B0C con ").concat(description, ".");
+                    weatherText.innerText = "".concat(temperature, "\u00B0C");
                     weatherIcon.src = "https://openweathermap.org/img/wn/".concat(iconCode, "@2x.png");
                     weatherIcon.style.display = 'block';
                     return [3 /*break*/, 4];

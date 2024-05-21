@@ -35,10 +35,10 @@ async function fetchWeather(): Promise<void> {
         }
         const weatherData = await response.json();
         const temperature = weatherData.main.temp;
-        const description = weatherData.weather[0].description;
         const iconCode = weatherData.weather[0].icon;
 
-        weatherText.innerText = `La temperatura en ${CITY} es de ${temperature}°C con ${description}.`;
+    
+        weatherText.innerText = `${temperature}°C`;      
         weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
         weatherIcon.style.display = 'block';
     } catch (error: any) {
