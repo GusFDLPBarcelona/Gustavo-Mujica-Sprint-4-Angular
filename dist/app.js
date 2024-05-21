@@ -43,14 +43,12 @@ var weatherText = document.getElementById('weatherText');
 var weatherIcon = document.getElementById('weatherIcon');
 var backgroundImage = document.getElementById('backgroundImage');
 var shapes = ['blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg'];
-
 // Variables
 var reportAcudits = [];
 var currentJoke = null;
 var useChuckNorrisAPI = false;
 var API_KEY = '6f5f881d8de1fa9d8310060dd6cc07c8';
 var CITY = 'Barcelona';
-
 // Función para los datos del tiempo en Barcelona desde OpenWeatherMap API
 function fetchWeather() {
     return __awaiter(this, void 0, void 0, function () {
@@ -172,7 +170,7 @@ function fetchJoke() {
         });
     });
 }
-// Función para cambiar el fondo con una nueva forma
+// Función para cambiar la burbuja de color con una nueva forma
 function changeBackground() {
     var randomIndex = Math.floor(Math.random() * shapes.length);
     var selectedShape = shapes[randomIndex];
@@ -237,6 +235,5 @@ votingContainer.addEventListener('click', function (event) {
 });
 nextJokeButton.addEventListener('click', displayJoke);
 // Llamadas a las funciones para mostrar el chiste y el tiempo
-
 displayJoke();
 fetchWeather();

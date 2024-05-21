@@ -12,6 +12,7 @@ body, .col {
     box-shadow: none !important;
 }
 
+
 #backgroundImage {
     position: fixed;
     top: 0;
@@ -19,7 +20,7 @@ body, .col {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-size: cover;
+    background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
 }
