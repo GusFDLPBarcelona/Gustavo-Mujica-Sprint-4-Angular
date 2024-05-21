@@ -16,12 +16,13 @@ const nextJokeButton = document.getElementById('nextJokeButton') as HTMLButtonEl
 const votingContainer = document.getElementById('voting-container') as HTMLDivElement;
 const weatherText = document.getElementById('weatherText') as HTMLParagraphElement;
 const weatherIcon = document.getElementById('weatherIcon') as HTMLImageElement;
-const shapes = ['Blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg']
+const backgroundImage = document.getElementById('backgroundImage') as HTMLDivElement;
+const shapes = ['blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg'];
 
 // Variables
 const reportAcudits: JokeReport[] = [];
 let currentJoke: Joke | null = null;
-let useChuckNorrisAPI = false; 
+let useChuckNorrisAPI = false;
 
 const API_KEY = '6f5f881d8de1fa9d8310060dd6cc07c8';
 const CITY = 'Barcelona';
@@ -37,8 +38,7 @@ async function fetchWeather(): Promise<void> {
         const temperature = weatherData.main.temp;
         const iconCode = weatherData.weather[0].icon;
 
-    
-        weatherText.innerText = `${temperature}°C`;      
+        weatherText.innerText = `${temperature}°C`;
         weatherIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
         weatherIcon.style.display = 'block';
     } catch (error: any) {
@@ -78,6 +78,7 @@ const chuckNorrisOptions = {
         'X-RapidAPI-Host': 'matchilling-chuck-norris-jokes-v1.p.rapidapi.com'
     }
 };
+
 // Función para obtener un chiste de Chuck Norris desde la API
 async function fetchChuckNorrisJoke(): Promise<Joke> {
     try {
@@ -105,13 +106,21 @@ async function fetchJoke(): Promise<Joke> {
     }
 }
 
+// Función para cambiar la burbuja de color con una nueva forma
+function changeBackground() {
+    const randomIndex = Math.floor(Math.random() * shapes.length);
+    const selectedShape = shapes[randomIndex];
+    backgroundImage.style.backgroundImage = `url('images/${selectedShape}')`;
+}
+
 // Función para mostrar los chistes en la página
 async function displayJoke(): Promise<void> {
     try {
         const joke = await fetchJoke();
         currentJoke = joke;
         jokeText.innerText = joke.joke;
-        useChuckNorrisAPI = !useChuckNorrisAPI; 
+        useChuckNorrisAPI = !useChuckNorrisAPI;
+        changeBackground();
         console.log('New joke displayed:', joke.joke);
     } catch (error: any) {
         jokeText.innerText = 'Error al cargar el chiste';
@@ -130,9 +139,9 @@ function voteJoke(score: number) {
         };
 
         if (existingReportIndex !== -1) {
-            reportAcudits[existingReportIndex] = report; 
+            reportAcudits[existingReportIndex] = report;
         } else {
-            reportAcudits.push(report); 
+            reportAcudits.push(report);
         }
 
         console.log('Updated reports:', reportAcudits);
@@ -143,8 +152,8 @@ function voteJoke(score: number) {
 
 // Eventos de escucha de los botones agrupados en el contenedor de votación
 votingContainer.addEventListener('click', (event) => {
-    if (event.target && (event.target as HTMLElement).matches('.vote-btn')) {
-        const target = event.target as HTMLButtonElement;
+    const target = event.target as HTMLButtonElement;
+    if (target && target.matches('.vote-btn')) {
         const score = Number(target.getAttribute('data-score'));
         console.log('Vote button clicked with score:', score);
         voteJoke(score);
@@ -153,6 +162,7 @@ votingContainer.addEventListener('click', (event) => {
 
 nextJokeButton.addEventListener('click', displayJoke);
 
-// LLamadas a las funciones para mostrar el chiste y el tiempo
+// Llamadas a las funciones para mostrar el chiste y el tiempo
+
 displayJoke();
 fetchWeather();

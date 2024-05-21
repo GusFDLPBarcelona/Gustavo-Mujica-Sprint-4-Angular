@@ -1,61 +1,93 @@
 html, body {
     height: 100%;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+
+
+body, .col {
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
-.bg-image {
-    position: absolute;
+#backgroundImage {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('./imagenes/pexels-photo-3812743.jpeg'); 
+    z-index: -1;
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
-    z-index: -1; 
+}
+
+#jokeContainer, #jokeContainer .container, #jokeContainer .col, #jokeContainer .row {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 #jokeContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; 
-}
-
-#jokeContainer .card {
-    max-width: 400px; 
-    width: auto;
+    flex-direction: column;
+    height: auto;
+    max-width: 600px; 
     padding: 20px;
-    text-align: center;
-}
+    background-color: transparent; 
+    border-radius: 10px;
+   }
 
-#jokeContainer p.alert {
+#jokeContainer p {
     margin: 10px 0;
+    font-size: 1.25rem; 
 }
 
-#voteButtons {
+#jokeContainer, #jokeContainer .col, #jokeContainer .row {
+    background-color: transparent;
+}
+
+#jokeContainer p, #jokeContainer button {
+    color: white;
+    font-weight: bold;
+}
+
+#voting-container {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
+.emoji {
+    transition: all 0.3s ease;
+    border-radius: 100px !important; 
+}
+
+.emoji:hover {
+    transform: scale(1.2);  
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); 
+}
+
 #nextJokeButton {
-    display: block;
+    display: inline-block;
     margin: 10px auto;
-}
-
-
-.alert-info {
+    padding: 10px 20px !important;
     font-size: 1.25rem;
+    background-color: #8605ff; 
+    color: white; 
+    border: none; 
+    border-radius: 50px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    border-radius: 50px;
 }
 
-#voteButtons {
-    display: flex;
-    justify-content: space-around;
-}
-
-.vote-btn {
-    width: 60px;
+#nextJokeButton:hover {
+    background-color: #840096; 
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.356) !important; 
 }
 
 #weatherContainer {
@@ -66,18 +98,12 @@ html, body {
     background-color: transparent;
     padding: 10px;
     border-radius: 5px;
-    max-width: 150px; 
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
-    #weatherContainer {
-        background-color: rgba(255, 255, 255, 0.5); /* Blanco semi-transparente */
-        display: flex; /* Hace que los elementos hijos se alineen en una fila */
-        align-items: center; /* Centra los elementos hijos verticalmente */
-        padding: 10px; /* Espacio alrededor del contenido */
-        border-radius: 5px; /* Bordes redondeados */
-    }
+#weatherIcon {
+    margin-right: 10px;
+}
 
-    #weatherIcon {
-        margin-right: 10px; /* Espacio a la derecha del icono */
-    }
+}

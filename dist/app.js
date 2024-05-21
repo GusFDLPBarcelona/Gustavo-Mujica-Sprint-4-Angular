@@ -41,13 +41,16 @@ var nextJokeButton = document.getElementById('nextJokeButton');
 var votingContainer = document.getElementById('voting-container');
 var weatherText = document.getElementById('weatherText');
 var weatherIcon = document.getElementById('weatherIcon');
-var shapes = ['Blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg'];
+var backgroundImage = document.getElementById('backgroundImage');
+var shapes = ['blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg'];
+
 // Variables
 var reportAcudits = [];
 var currentJoke = null;
 var useChuckNorrisAPI = false;
 var API_KEY = '6f5f881d8de1fa9d8310060dd6cc07c8';
 var CITY = 'Barcelona';
+
 // Función para los datos del tiempo en Barcelona desde OpenWeatherMap API
 function fetchWeather() {
     return __awaiter(this, void 0, void 0, function () {
@@ -169,6 +172,12 @@ function fetchJoke() {
         });
     });
 }
+// Función para cambiar el fondo con una nueva forma
+function changeBackground() {
+    var randomIndex = Math.floor(Math.random() * shapes.length);
+    var selectedShape = shapes[randomIndex];
+    backgroundImage.style.backgroundImage = "url('images/".concat(selectedShape, "')");
+}
 // Función para mostrar los chistes en la página
 function displayJoke() {
     return __awaiter(this, void 0, void 0, function () {
@@ -183,6 +192,7 @@ function displayJoke() {
                     currentJoke = joke;
                     jokeText.innerText = joke.joke;
                     useChuckNorrisAPI = !useChuckNorrisAPI;
+                    changeBackground();
                     console.log('New joke displayed:', joke.joke);
                     return [3 /*break*/, 3];
                 case 2:
@@ -218,14 +228,15 @@ function voteJoke(score) {
 }
 // Eventos de escucha de los botones agrupados en el contenedor de votación
 votingContainer.addEventListener('click', function (event) {
-    if (event.target && event.target.matches('.vote-btn')) {
-        var target = event.target;
+    var target = event.target;
+    if (target && target.matches('.vote-btn')) {
         var score = Number(target.getAttribute('data-score'));
         console.log('Vote button clicked with score:', score);
         voteJoke(score);
     }
 });
 nextJokeButton.addEventListener('click', displayJoke);
-// LLamadas a las funciones para mostrar el chiste y el tiempo
+// Llamadas a las funciones para mostrar el chiste y el tiempo
+
 displayJoke();
 fetchWeather();
