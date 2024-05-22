@@ -98,7 +98,8 @@ HTML:
 · Línea 132 a 151: Esta función toma el parámetro score basándose en el chiste ostrado en
    pantalla. Se crea un informe de puntuación en un array si no existe uno anterior y se modifica esa puntuación sobre el mismo chiste si el usuario asigna una puntuación diferente luego de haber votado. Es decir, permite vota y cambiar la votación almacenando un reporte que se mostrará en consola. Este reporte es acumulativo, agregando al array cada chiste que se vota.
 
-· Línea 153 a 161: Esta función define un controlador de eventos para el evento "click" en el elemento votingContainer creado para agrupar los "score". Obtiene el elemento que fue clicado (el objetivo del evento) y lo almacena en la constante "target" asumiendo que el objetivo del evento es un elemento html (HTMLButtonElement). El bloque condicional asegura que target no es null y si coincide con el selector. Es decir, se ejecuta si el elemento clicado es un botón de votación. La constante score obtiene el atributo data-score para convertirlo en el número que contiene la puntuación asociada al botón en el que se ha clicado. 
+· Línea 153 a 161: Esta función define un controlador de eventos para el evento "click" en el
+   elemento votingContainer creado para agrupar los "score". Obtiene el elemento que fue clicado (el objetivo del evento) y lo almacena en la constante "target" asumiendo que el objetivo del evento es un elemento html (HTMLButtonElement). El bloque condicional asegura que target no es null y si coincide con el selector. Es decir, se ejecuta si el elemento clicado es un botón de votación. La constante score obtiene el atributo data-score para convertirlo en el número que contiene la puntuación asociada al botón en el que se ha clicado. 
 
 
 
