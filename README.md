@@ -61,49 +61,45 @@ HTML:
     a validar los datos
     para prevenir errores en el desarrollo. Por tanto, definir la interface para validar la estructura de los datos que se reciben de la API ayudaría a verificar que los datos recibidos también tienen el tipo correcto. La segunda asigna tipos a los datos que se guardarán en array de los chistes puntuados.
 
-· Línea 23 a 25: Dado que tendremos una función para alernar chistes era necesario declarar una variable para inicializar primero una de las dos Api desde las cuales se tomarán datos (chistes). La primera en este caso, se establece en false, lo que supondrá que no será la primera en ser utilizada. El valor para currentJoKe se establece en null para poder ser modificado cuando se obtengan los primeros datos. Y se crea el array que almacenará las puntuaciones de los chistes para poder consultarlas según se almacenen los datos.
+· Línea 23 a 25: Dado que tendremos una función para alernar chistes era necesario declarar
+    una variable para inicializar primero una de las dos Api desde las cuales se tomarán datos (chistes). La primera en este caso, se establece en false, lo que supondrá que no será la primera en ser utilizada. El valor para currentJoKe se establece en null para poder ser modificado cuando se obtengan los primeros datos. Y se crea el array que almacenará las puntuaciones de los chistes para poder consultarlas según se almacenen los datos.
 
-· línea 27 y 28: Contienen las constantes necesarias para acceder mediante API_KEY a la información del clima. Y la constante CITY se establece en Barcelona para mostrar los datos correspondiente a esta ciudad.
+· línea 27 y 28: Contienen las constantes necesarias para acceder mediante API_KEY a la
+    información del clima. Y la constante CITY se establece en Barcelona para mostrar los datos correspondiente a esta ciudad.
 
-· Línea 31 y 48: Creamos una función para obtener los datos climáticos desde una API. Es una función asíncrona que contiene una promesa vacía. LA promesa se resuelve luego de aportar la clave API declarada anteriormente y el nombre de la ciudad de la que se informará el tiempo. Luego de comprobar si la respuesta es corrcta las constantes d temperatura e icono convierten los datos en un objeto JSON. Luego se extrae la información para actualizar los datos en el HTML, mostrando la información al usuario. La función contiene un bloque TRY y CATCH para atajar errores de ejecución. 
+· Línea 31 y 48: Creamos una función para obtener los datos climáticos desde una API. Es una
+   función asíncrona que contiene una promesa vacía. LA promesa se resuelve luego de aportar la clave API declarada anteriormente y el nombre de la ciudad de la que se informará el tiempo. Luego de comprobar si la respuesta es corrcta las constantes d temperatura e icono convierten los datos en un objeto JSON. Luego se extrae la información para actualizar los datos en el HTML, mostrando la información al usuario. La función contiene un bloque TRY y CATCH para atajar errores de ejecución. 
 
-· Línea 9 a 20: Función para para llaar y obtener un chiste de la API. 
-    Como es requisito del enunciado se declara una función asíncrona que devolverá una promesa que se resuelve con un objeto: el chiste. Hace una solicitud a la url y espera hasta que la promesa se resuelva. Luego asigna el resultado a la variable 'response'.
-    Indicamos que la respuesta esperada es en formato .json estableciendo el encabezado accept del headers en 'application/json'.
-    Comprueba si la respuesta es correcta y si no lo es nos devolverá un mensaje relativo al resultado.
+· Línea 51 a 69: Función para para llamar y obtener un chiste de la API icanhazdadjoke
+   Como es requisito del enunciado se declara una función asíncrona que devolverá una promesa
+   que se resuelve con un objeto: el chiste. Hace una solicitud a la url y espera hasta que la promesa se resuelva. Luego asigna el resultado a la variable 'response'.
+   Indicamos que la respuesta esperada es en formato .json estableciendo el encabezado accept del headers en 'application/json'.
+   Comprueba si la respuesta es correcta y si no lo es nos devolverá un mensaje relativo al resultado.
 
-· Línea 21 a 30: Función para mostrar el chiste en la pantalla.
-    Declaramos una función asíncrona que devuelve una promesa que se resuelve en <void>. (La función displayJoke se encarga de dos cosas: mostrar el chiste en la pantalla y en la consola. Ambas son acciones, no producen un valor que se vaya a utilizar en otro lugar del código. Por lo tanto, no hay necesidad de que displayJoke devuelva un valor como por ejemplo "joke".)
-    Iniciamos un bloque 'try' para capturar cualquier error que pueda ocurrir durante la ejecución de las instrucciones dentro del bloque.
-    La constante joke llama a la función fetchJoke() y espera a que se cumpla la promesa para asignar el resultado a la variable joke.
-    Las siguientes líneas capturan errores si estos ocurrieran y cambia lo que se muestra en el DOM y en la consola en caso de producirse esos posibles errores.
+· Línea 72 a 80: Para la API de los chistes de Chuck Norris era necesario declarar una
+   constante que contuviera las opciones para la solicitud HTTP indicando el método a utilizar (GET) para obtener los recursos. Indicamos en el encabezado que la respuesta que se espera es en formato JSON. Incluímos la clave API para acceder a esos recursos y también proporcionamos el host de la API para enrutar correctamente la solicitud al servicio correcto.
 
-· Línea 32 y 34: Añadimos un evento al botón para obtener el siguiente chiste y llamamos a la función displayJoke(). Así pues, al iniciar la aplicación, obtenemos un chiste.
+· Línea 83 a 98: Definimos la función asíncrona para obtener los chistes de la API de Chuck
+   Norris, con las mismas propiedades y métodos que la función para obtener los chistes de
+   la API de icanhazdadjoke. Con las mismas condiciones según respuesta y los bloques TRY y CATCH para prevenir errores.
 
+· Línea 101 a 107: Esta es la función que de qué API se obtendrá un chiste entre las dos
+   desde las cuales consumiremos datos. Al establecer en principio la constante de Chuck Norris en false, al cargar la página siempre comenzaremos viendo un chiste de la API de icanhazdadjoke. Primero comprueba que la variable es true/false y si es true llama a Chuck y si no, llama a icanhazdadjoke. Utilizamos la clave await para esperar a que la promesa se resuelva antes de devolver el resultado. 
 
-Nivel 1 Ejercicio 2
+· Línea 110 a 114: En este punto se añade una pequeña función para mostrar aleatoriamente 
+   las imágenes que decoran la aplicación. Se proponen burbujas de colores y es este caso he elegido 5 diferentes que se mostrarán cada vez que se hace click en el botón "Siguiente Chiste". Se genera un índice aleatorio teniendo en cuenta que debemos obtener un índice válido para el array de formas. Utiliza randomIndex para seleccionar aleatoriamente una de las 5 formas que contiene el array y la imagen se cambia al insertar directamente variables en la cadena de texto ${selectedShape}.
 
-Hemos de realizar una primera maquetación, colocando cada elemento en su sitio. En este ejercicio no maquetaremos al detalle sino que centraremos los elementos y declaramos algunas clases de estilos.
+· Línea 116 a 129: Función para mostrar el chiste en la pantalla.
+   Declaramos una función asíncrona que devuelve una promesa que se resuelve en <void>. (La función displayJoke se encarga de dos cosas: mostrar el chiste en la pantalla y en la consola. Ambas son acciones, no producen un valor que se vaya a utilizar en otro lugar del código. Por lo tanto, no hay necesidad de que displayJoke devuelva un valor como por ejemplo "joke".)
+   Iniciamos un bloque 'try' para capturar cualquier error que pueda ocurrir durante la ejecución de las instrucciones dentro del bloque.
+   La constante joke llama a la función fetchJoke() y espera a que se cumpla la promesa para asignar el resultado a la variable joke.
+   Las siguientes líneas capturan errores si estos ocurrieran y cambia lo que se muestra en el DOM y en la consola en caso de producirse esos posibles errores.
 
-· HTML: Modificcamos el archivo index.html para agregar una imagen de fondo y aplicar algunos estilos. Redefinimos los divs necesarios.
+· Línea 132 a 151: Esta función toma el parámetro score basándose en el chiste ostrado en
+   pantalla. Se crea un informe de puntuación en un array si no existe uno anterior y se modifica esa puntuación sobre el mismo chiste si el usuario asigna una puntuación diferente luego de haber votado. Es decir, permite vota y cambiar la votación almacenando un reporte que se mostrará en consola. Este reporte es acumulativo, agregando al array cada chiste que se vota.
 
-· Línea 16 a 22: Agregamos un div para la imagen de fondo y asignamos una imagen.
-    Creamos un contenedor para los chistes mediante div y aplicamos clases y alineaciones verticales y horizontales.
-    Creamos un div con propiedades de tarjeta para mostrar el texto de los chistes y el botón para el siguiente chiste. 
-    El párrafo con id="jokeText con clase de alerta será visible si la promesa demora en resolverse y el chiste tarda en cargarse. Mostrará el mensaje "Cargando Chiste" si fuera necesario.
-    Por ahora el botón solo tiene una clase primaria de bootstrap (btn-btn-primary)
+· Línea 153 a 161: Esta función define un controlador de eventos para el evento "click" en el elemento votingContainer creado para agrupar los "score". Obtiene el elemento que fue clicado (el objetivo del evento) y lo almacena en la constante "target" asumiendo que el objetivo del evento es un elemento html (HTMLButtonElement). El bloque condicional asegura que target no es null y si coincide con el selector. Es decir, se ejecuta si el elemento clicado es un botón de votación. La constante score obtiene el atributo data-score para convertirlo en el número que contiene la puntuación asociada al botón en el que se ha clicado. 
 
-· Style.css
-
-· Línea 1 a 4: Eliminamos cualquier margen predeterminado y establecemos la altura al 100% del viewport.
-
-· Línea 6 a 16: Aquí damos estilos al div que contiene la imagen de fondo. Posición absoluta pra cubrir todo el fondo, la ajustamos para ocupar todo el div y la centramos. Y con el zindex de -1 nos aseguramos de que la imagen se muestre detrás de los chistes.
-
-· Líneas 18 a 20: Damos un estilo básico al container del texto de los chistes. La ajustamos al 100% de altura. 
-
-· Línea 22 a 25: Con estas líneas damos estilo básico a la tarjeta que contendrá los textos y el botón. Fondo semi transparente y esquinas suavemente redondeadas.
-
-· Línea 27 a 29: Esta clase aumenta levemente el tamaño de la alerta "Cargando Chiste" y afwectará también al tamaño del texto de los chistes, que llevan la misma clase .alert-info . 
 
 
 
