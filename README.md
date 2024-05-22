@@ -24,22 +24,47 @@ En el ámbito profesional, cuando trabajes en un proyecto, la empresa normalment
 
 El ejercicio se compone de 6 (seis) ejercicios agrupados en tres niveles que detallaré a medida que vaya resolviendo las funciones necesarias.
 
+Clona el repositorio para ver los resultados. Puedes hacerlo en este link:
+https://github.com/GusFDLPBarcelona/Gustavo-Mujica-Sprint-4-Angular.git
+
+Sigue estos pasos para instalar las dependencias necesarias. Al tratarse de un proyecto que incorpora Typescript lo común sería:
+node js:
+$ npm init (si quieres que npm asuma los valores por defecto $ npm init -y)
+Typescript:
+$ npm install -g typescript
+
+En la carpeta .gitignore se encuentran los node_modules que no incluímos en el repositorio ni en el sitio web en general. 
+
+Las carpetas .editorconfig, .eslintignore, .eslintrcjson, .prettier.js se crean si instalas además el compilador de TS de Google. En este ejercicio no ha trenido impacto. 
+
+El archivo tsconfig.json se genera al iniciar Typescript en el proyecto luego de la instalación de las dependencias. En este ejercicio utilicé el comando $ tsc --init y $ npx tsc para compilar TS a JS. app.js pues, es un archivo espejo de app.ts.
+
 --------------------------------------------------------------------
 Nivel 1 Ejercicio 1
 
-En este primer ejercicio crearemos la pantalla principal que mostrará chistes al usuario/a.
+En este primer ejercicio crearemos la pantalla principal que mostrará chistes al usuario/a, tres botones para puntuar los chistes e información del clima en tiempo real.
+
 El funcionamiento debe ser el siguiente:
 
-- Al iniciar se mostrará el primer chiste por pantalla y el botón de siguiente chiste.
+HTML:
+
+- Al iniciar se mostrará el primer chiste por pantalla y el botón de siguiente chiste. Además de los botones de puntuación y la información climática.
+
 - Al pulsar el botón de “Siguiente chiste” se hará fetch en la API de chistes y se mostrará por consola y por pantalla el chiste.
 
-· HTML: El archivo index.html solo contendrá un botón para el siguiente chiste, más adelante la información sobre clima y algunos estilos, además de los links necesarios para bootstrap y scripts.
 
-· app.ts: creamos las funciones para llamar a la API y mostrar el chiste en la pantalla y consola.
 
-· Línea 1 a 4: Definen la estructura de un chiste según la API. Typescript ayuda a validar los datos para prevenir errores en el desarrollo. Por tanto, definir la interface para validar la estructura de los datos que se reciben de la API ayudaría a verificar que los datos recibidos también tienen el tipo correcto. 
+· app.ts:
+- Creamos las funciones para llamar a la API y mostrar el chiste en la pantalla y consola.
 
-· Línea 6 y 7: Tomamos los elementos del DOM declarando dos constantes para el chiste y el botón.
+· Línea 2 a 10: Interfaces. Definen la estructura de un chiste según la API. Typescript ayuda a validar los datos
+    para prevenir errores en el desarrollo. Por tanto, definir la interface para validar la estructura de los datos que se reciben de la API ayudaría a verificar que los datos recibidos también tienen el tipo correcto. La segunda asigna tipos a los datos que se guardarán en array de los chistes puntuados.
+
+· Línea 23 a 25: Dado que tendremos una función para alernar chistes era necesario declarar una variable para inicializar primero una de las dos Api desde las cuales se tomarán datos (chistes). La primera en este caso, se establece en false, lo que supondrá que no será la primera en ser utilizada. El valor para currentJoKe se establece en null para poder ser modificado cuando se obtengan los primeros datos. Y se crea el array que almacenará las puntuaciones de los chistes para poder consultarlas según se almacenen los datos.
+
+· línea 27 y 28: Contienen las constantes necesarias para acceder mediante API_KEY a la información del clima. Y la constante CITY se establece en Barcelona para mostrar los datos correspondiente a esta ciudad.
+
+· Línea 31 y 48: Creamos una función para obtener los datos climáticos desde una API. Es una función asíncrona que contiene una promesa vacía. LA promesa se resuelve luego de aportar la clave API declarada anteriormente y el nombre de la ciudad de la que se informará el tiempo. Luego de comprobar si la respuesta es corrcta las constantes d temperatura e icono convierten los datos en un objeto JSON. Luego se extrae la información para actualizar los datos en el HTML, mostrando la información al usuario. La función contiene un bloque TRY y CATCH para atajar errores de ejecución. 
 
 · Línea 9 a 20: Función para para llaar y obtener un chiste de la API. 
     Como es requisito del enunciado se declara una función asíncrona que devolverá una promesa que se resuelve con un objeto: el chiste. Hace una solicitud a la url y espera hasta que la promesa se resuelva. Luego asigna el resultado a la variable 'response'.
