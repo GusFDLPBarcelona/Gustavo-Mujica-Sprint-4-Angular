@@ -55,9 +55,10 @@ HTML:
 
 
 · app.ts:
-- Creamos las funciones para llamar a la API y mostrar el chiste en la pantalla y consola.
+- Contiene  todas las funciones lógicas para cumplir el objetivo de mostrar información, almacenarla, modificarla y consultarla. 
 
-· Línea 2 a 10: Interfaces. Definen la estructura de un chiste según la API. Typescript ayuda a validar los datos
+· Línea 2 a 10: Interfaces. Definen la estructura de un chiste según la API. Typescript ayuda
+    a validar los datos
     para prevenir errores en el desarrollo. Por tanto, definir la interface para validar la estructura de los datos que se reciben de la API ayudaría a verificar que los datos recibidos también tienen el tipo correcto. La segunda asigna tipos a los datos que se guardarán en array de los chistes puntuados.
 
 · Línea 23 a 25: Dado que tendremos una función para alernar chistes era necesario declarar una variable para inicializar primero una de las dos Api desde las cuales se tomarán datos (chistes). La primera en este caso, se establece en false, lo que supondrá que no será la primera en ser utilizada. El valor para currentJoKe se establece en null para poder ser modificado cuando se obtengan los primeros datos. Y se crea el array que almacenará las puntuaciones de los chistes para poder consultarlas según se almacenen los datos.
