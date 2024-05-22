@@ -40,11 +40,6 @@ Las carpetas .editorconfig, .eslintignore, .eslintrcjson, .prettier.js se crean 
 El archivo tsconfig.json se genera al iniciar Typescript en el proyecto luego de la instalación de las dependencias. En este ejercicio utilicé el comando $ tsc --init y $ npx tsc para compilar TS a JS. app.js pues, es un archivo espejo de app.ts.
 
 --------------------------------------------------------------------
-Nivel 1 Ejercicio 1
-
-En este primer ejercicio crearemos la pantalla principal que mostrará chistes al usuario/a, tres botones para puntuar los chistes e información del clima en tiempo real.
-
-El funcionamiento debe ser el siguiente:
 
 HTML:
 
