@@ -4,7 +4,7 @@ Aplicación web que muestra chistes obtenidos de dos APIs públicas de forma alt
 
 ## Demo
 
-[Ver demo en GitHub Pages](https://gusfdlpbarcelona.github.io/Gustavo-Mujica-Sprint-4-Angular-/)
+[Ver demo en GitHub Pages](https://gusfdlpbarcelona.github.io/Gustavo-Mujica-Sprint-4-Angular/)
 
 ## Tecnologías
 
