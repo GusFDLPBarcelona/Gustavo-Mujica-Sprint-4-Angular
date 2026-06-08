@@ -5,7 +5,7 @@ html, body {
     justify-content: center;
     align-items: center;
     background-color: white;
-
+}
 
 body, .col {
     background-color: transparent !important;
@@ -104,7 +104,7 @@ body, .col {
 
 #weatherIcon {
     margin-right: 1px;
-    box-shadow: o o 30px #840096 !important;
+    box-shadow: 0 0 30px #840096 !important;
 }
 
 }
