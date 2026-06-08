@@ -18,6 +18,7 @@ const weatherText = document.getElementById('weatherText') as HTMLParagraphEleme
 const weatherIcon = document.getElementById('weatherIcon') as HTMLImageElement;
 const backgroundImage = document.getElementById('backgroundImage') as HTMLDivElement;
 const voteToast = document.getElementById('voteToast') as HTMLDivElement;
+const infoToast = document.getElementById('infoToast') as HTMLDivElement;
 const shapes = ['blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg'];
 
 // Variables
@@ -178,3 +179,4 @@ nextJokeButton.addEventListener('click', displayJoke);
 
 displayJoke();
 fetchWeather();
+setTimeout(() => infoToast.classList.add('visible'), 1500);

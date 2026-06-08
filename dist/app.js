@@ -43,6 +43,7 @@ var weatherText = document.getElementById('weatherText');
 var weatherIcon = document.getElementById('weatherIcon');
 var backgroundImage = document.getElementById('backgroundImage');
 var voteToast = document.getElementById('voteToast');
+var infoToast = document.getElementById('infoToast');
 var shapes = ['blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg'];
 // Variables
 var reportAcudits = [];
@@ -248,3 +249,4 @@ nextJokeButton.addEventListener('click', displayJoke);
 // Llamadas a las funciones para mostrar el chiste y el tiempo
 displayJoke();
 fetchWeather();
+setTimeout(function () { return infoToast.classList.add('visible'); }, 1500);

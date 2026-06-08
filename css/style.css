@@ -110,8 +110,7 @@ body, .col {
 #voteToast {
     position: fixed;
     bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 40px;
     background-color: #8605ff;
     color: white;
     font-weight: bold;
@@ -133,6 +132,34 @@ body, .col {
     0%   { opacity: 0; }
     7%   { opacity: 1; }
     77%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#infoToast {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    background-color: #2d2d2d;
+    color: #f0f0f0;
+    font-weight: 500;
+    padding: 12px 28px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    font-size: 0.95rem;
+    z-index: 9999;
+    white-space: nowrap;
+}
+
+#infoToast.visible {
+    animation: infoToastIn 5.3s forwards;
+}
+
+@keyframes infoToastIn {
+    0%   { opacity: 0; }
+    6%   { opacity: 1; }
+    81%  { opacity: 1; }
     100% { opacity: 0; }
 }
 
