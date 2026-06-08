@@ -17,6 +17,7 @@ const votingContainer = document.getElementById('voting-container') as HTMLDivEl
 const weatherText = document.getElementById('weatherText') as HTMLParagraphElement;
 const weatherIcon = document.getElementById('weatherIcon') as HTMLImageElement;
 const backgroundImage = document.getElementById('backgroundImage') as HTMLDivElement;
+const voteToast = document.getElementById('voteToast') as HTMLDivElement;
 const shapes = ['blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg'];
 
 // Variables
@@ -128,6 +129,16 @@ async function displayJoke(): Promise<void> {
     }
 }
 
+// Función para mostrar el toast de votación
+function showVoteToast(): void {
+    const counts: Record<number, number> = {1: 0, 2: 0, 3: 0};
+    reportAcudits.forEach(r => counts[r.score]++);
+    voteToast.textContent = `😡 ${counts[1]} · 😊 ${counts[2]} · 😂 ${counts[3]}`;
+    voteToast.classList.remove('visible');
+    void voteToast.offsetWidth;
+    voteToast.classList.add('visible');
+}
+
 // Función para votar un chiste
 function voteJoke(score: number) {
     if (currentJoke) {
@@ -144,6 +155,7 @@ function voteJoke(score: number) {
             reportAcudits.push(report);
         }
 
+        showVoteToast();
         console.log('Updated reports:', reportAcudits);
     } else {
         console.error('currentJoke is null');

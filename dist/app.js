@@ -42,6 +42,7 @@ var votingContainer = document.getElementById('voting-container');
 var weatherText = document.getElementById('weatherText');
 var weatherIcon = document.getElementById('weatherIcon');
 var backgroundImage = document.getElementById('backgroundImage');
+var voteToast = document.getElementById('voteToast');
 var shapes = ['blob(1).svg', 'blob(2).svg', 'blob(3).svg', 'blob(4).svg', 'blob(5).svg'];
 // Variables
 var reportAcudits = [];
@@ -203,6 +204,15 @@ function displayJoke() {
         });
     });
 }
+// Función para mostrar el toast de votación
+function showVoteToast() {
+    var counts = { 1: 0, 2: 0, 3: 0 };
+    reportAcudits.forEach(function (r) { return counts[r.score]++; });
+    voteToast.textContent = "\uD83D\uDE21 ".concat(counts[1], " \u00B7 \uD83D\uDE0A ").concat(counts[2], " \u00B7 \uD83D\uDE02 ").concat(counts[3]);
+    voteToast.classList.remove('visible');
+    void voteToast.offsetWidth;
+    voteToast.classList.add('visible');
+}
 // Función para votar un chiste
 function voteJoke(score) {
     if (currentJoke) {
@@ -218,6 +228,7 @@ function voteJoke(score) {
         else {
             reportAcudits.push(report);
         }
+        showVoteToast();
         console.log('Updated reports:', reportAcudits);
     }
     else {

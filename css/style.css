@@ -107,4 +107,33 @@ body, .col {
     mix-blend-mode: multiply;
 }
 
+#voteToast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #8605ff;
+    color: white;
+    font-weight: bold;
+    padding: 12px 28px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(134, 5, 255, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    font-size: 1.1rem;
+    z-index: 9999;
+    white-space: nowrap;
+}
+
+#voteToast.visible {
+    animation: toastIn 4.3s forwards;
+}
+
+@keyframes toastIn {
+    0%   { opacity: 0; }
+    7%   { opacity: 1; }
+    77%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 }
