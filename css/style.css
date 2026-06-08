@@ -104,6 +104,7 @@ body, .col {
 
 #weatherIcon {
     margin-right: 1px;
+    mix-blend-mode: multiply;
 }
 
 }
